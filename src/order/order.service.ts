@@ -57,6 +57,15 @@ export class OrderService {
     return 'err'
   }
 
+  async deletedish(id: number){
+    let dish = await this.OrderDishes.findOne({where:{id}});
+    if(dish){
+      this.OrderDishes.manager.remove(dish)
+      return 'ok'
+    }
+    return 'err'
+  }
+
   async findOne(id: number) {
    let order = await this.Order.createQueryBuilder('order')
    .leftJoinAndSelect('order.addedBy', 'user')

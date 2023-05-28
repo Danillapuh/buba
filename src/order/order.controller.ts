@@ -32,6 +32,10 @@ export class OrderController {
   findOne(@Param('page', ParseIntPipe) page: number, @GetUser() user: InfoUser, @Query() shift: ShiftIdDto) {
     return this.orderService.findMany(page, user, shift.shiftId)
   }
+  @Post('dish/delete/:id')
+  deleteDish(@Param('id', ParseIntPipe) id: number){
+    return this.orderService.deletedish(id)
+  }
 
   @Get('/allDishes')
   sdfdse() {

@@ -35,6 +35,14 @@ export class ShiftService {
    return await this.WorkShift.manager.save(shift)
   }
 
+  async CurrentShiftshifthasUser(id: number): Promise<boolean>{
+    let shift = await this.getCurrentShift()
+    if(!shift) return false
+    let user = await this.User.findOne({where:{id, shifts: [shift]}})
+    if(user) return true
+    return false
+
+  }
   async getCurrentShift(){
     let now = new Date()
     console.log(now)
